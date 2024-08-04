@@ -44,7 +44,7 @@ def prepare_dataset():
     current_dir = os.path.dirname(__file__)
 
     # Construct the path to dataset.json
-    dataset_path = os.path.join(current_dir, "..", "datasets", "preprocessed_data.json")
+    dataset_path = os.path.join(current_dir, "..", "datasets", "processed_data.json")
 
     with open(dataset_path, "r") as json_file:
         dataset = json.load(json_file)
