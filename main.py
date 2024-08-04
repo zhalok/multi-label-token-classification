@@ -11,8 +11,6 @@ train_set = prepared_dataset["train_dataset"]
 val_set = prepared_dataset["val_dataset"]
 test_set = prepared_dataset["test_dataset"]
 
-id2label = prepared_dataset["id2label"]
-label2id = prepared_dataset["label2id"]
 
 tokenized_train_dataset = train_set.map(tokenize_and_align_labels)
 tokenized_validation_dataset = val_set.map(tokenize_and_align_labels)

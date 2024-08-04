@@ -1,3 +1,5 @@
+import os
+
 from transformers import (
     AutoModelForTokenClassification,
     TrainingArguments,
@@ -15,6 +17,9 @@ model = AutoModelForTokenClassification.from_pretrained(
 
 
 def prepare_trainer(train_set, val_set):
+
+    if os.path.isdir("model") == False:
+        os.makedirs("model")
 
     training_args = TrainingArguments(
         output_dir="model",
@@ -37,6 +42,8 @@ def prepare_trainer(train_set, val_set):
         data_collator=data_collator,
         compute_metrics=compute_metrics,
     )
+
+    return trainer
 
 
 def train(trainer):
