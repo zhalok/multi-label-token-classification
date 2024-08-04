@@ -7,12 +7,12 @@ from transformers import (
     DataCollatorForTokenClassification,
 )
 from preprocessing.tokenize import tokenizer
-from config import model_name, label2id, id2label
+from config import model_name, label2id, id2label, label_list
 from util import compute_metrics
 
 data_collator = DataCollatorForTokenClassification(tokenizer=tokenizer)
 model = AutoModelForTokenClassification.from_pretrained(
-    model_name, num_labels=13, id2label=id2label, label2id=label2id
+    model_name, num_labels=len(label_list), id2label=id2label, label2id=label2id
 )
 
 
