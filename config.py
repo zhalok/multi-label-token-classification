@@ -1,5 +1,29 @@
 model_name = "google-bert/bert-base-multilingual-cased"
 
+label_list = [
+    "B-D&T",
+    "B-EVENT",
+    "B-GPE",
+    "B-LOC",
+    "B-MISC",
+    "B-NUM",
+    "B-ORG",
+    "B-OTH",
+    "B-PER",
+    "B-T&T",
+    "B-UNIT",
+    "I-D&T",
+    "I-EVENT",
+    "I-GPE",
+    "I-LOC",
+    "I-MISC",
+    "I-NUM",
+    "I-ORG",
+    "I-PER",
+    "I-T&T",
+    "I-UNIT",
+]
+
 id2label = {
     "0": "NNP",
     "1": "PUNCT",

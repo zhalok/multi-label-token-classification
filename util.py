@@ -1,17 +1,19 @@
 import evaluate
+
 seqeval = evaluate.load("seqeval")
 
+
 def remove_new_line_char(string):
-  return string.replace("\n","")
+    return string.replace("\n", "")
+
 
 import numpy as np
-
+from config import label_list
 
 
 def compute_metrics(p):
     predictions, labels = p
     predictions = np.argmax(predictions, axis=2)
-    label_list = 36
 
     true_predictions = [
         [label_list[p] for (p, l) in zip(prediction, label) if l != -100]
