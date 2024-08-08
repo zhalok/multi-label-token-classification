@@ -1,11 +1,14 @@
-from util import remove_new_line_char
 import json
 
 
+def remove_new_line_char(string):
+    return string.replace("\n", "")
+
+
 def preprocess_raw_dataset():
-    with open("datasets/data.tsv","r") as data_file:
+    with open("datasets/data.tsv", "r") as data_file:
         data = data_file.readlines()
-        
+
         rows = []
         row = []
         for d in data:
@@ -13,17 +16,17 @@ def preprocess_raw_dataset():
                 row.append(d)
             else:
                 rows.append(row)
-                row=[]
+                row = []
         dataset = []
 
         for row in rows:
-            
+
             sample = {}
             sample["text"] = remove_new_line_char(row[0])
             tokens = []
             ner_tags = []
             pos_tags = []
-            for i in range(1,len(row)):
+            for i in range(1, len(row)):
                 token, pos_tag, ner_tag = row[i].split("\t")
                 token = remove_new_line_char(token)
                 pos_tag = remove_new_line_char(pos_tag)
@@ -38,9 +41,8 @@ def preprocess_raw_dataset():
             sample["pos_tags"] = pos_tags
 
             dataset.append(sample)
-        
 
-        with open("datasets/processed_data.json","w") as json_file:
-            json.dump(dataset,json_file)
-        
+        with open("datasets/processed_data.json", "w") as json_file:
+            json.dump(dataset, json_file)
+
         return dataset

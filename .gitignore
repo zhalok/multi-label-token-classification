@@ -5,7 +5,10 @@ __pycache__/
 
 # C extensions
 *.so
-
+datasets/train.json
+datasets/test.json
+datasets/val.json
+datasets/processed_data.json
 # Distribution / packaging
 .Python
 build/

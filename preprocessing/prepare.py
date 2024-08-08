@@ -39,12 +39,26 @@ def prepare_hf_dataset(df):
     return dataset
 
 
+def resample_dataset(df):
+    dataset = []
+
+    for i in range(len(df)):
+        data = df.iloc[i]
+        dataset.append({"tokens": data["tokens"], "tags": data["ner_tag_ids"]})
+        dataset.append({"tokens": data["tokens"], "tags": data["pos_tag_ids"]})
+
+    resampled_df = pd.DataFrame(dataset)
+
+    return resampled_df
+
+
 def prepare_dataset():
 
     current_dir = os.path.dirname(__file__)
 
     # Construct the path to dataset.json
     dataset_path = os.path.join(current_dir, "..", "datasets", "processed_data.json")
+    dataset_dir = os.path.join(current_dir, "..", "datasets")
 
     with open(dataset_path, "r") as json_file:
         dataset = json.load(json_file)
@@ -59,22 +73,20 @@ def prepare_dataset():
 
         id2label = {i: label for i, label in enumerate(unique_tags)}
         label2id = {label: i for i, label in enumerate(unique_tags)}
-        processed_df = processed_df.apply(
+        prepared_df = processed_df.apply(
             lambda x: process_tag_ids(row=x, label2id=label2id), axis=1
         )
-        splitting = split_dataset(processed_df)
-        train_df = splitting["train"]
-        test_df = splitting["test"]
-        val_df = splitting["val"]
 
-        train_dataset = prepare_hf_dataset(train_df)
-        val_dataset = prepare_hf_dataset(val_df)
-        test_dataset = prepare_hf_dataset(test_df)
+        return prepared_df
 
-        return {
-            "train_dataset": train_dataset,
-            "test_dataset": test_dataset,
-            "val_dataset": val_dataset,
-            "label2id": label2id,
-            "id2label": id2label,
-        }
+
+def create_hf_dataset(df):
+    columns = df.columns
+
+    hf_dataset = {"id": [i for i in range(df.shape[0])]}
+    for col in columns:
+        hf_dataset[col] = df[col].tolist()
+
+    hf_dataset = Dataset.from_dict(hf_dataset)
+
+    return hf_dataset

@@ -13,8 +13,4 @@ def split_dataset(df):
     val_df = temp_df[:val_size]
     test_df = temp_df[val_size:]
 
-    return {
-        "train":train_df,
-        "test":test_df,
-        "val":val_df
-    }
+    return {"train": train_df, "test": test_df, "val": val_df}
