@@ -1,4 +1,11 @@
-model_name = "google-bert/bert-base-multilingual-cased"
+import os
+from dotenv import load_env
+
+load_env()
+
+
+model_name = os.getenv("BASE_MODEL_NAME")
+model_path = os.getenv("MODEL_PATH")
 
 label_list = [
     "NNP",

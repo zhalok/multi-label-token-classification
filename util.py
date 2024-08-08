@@ -1,4 +1,5 @@
 import evaluate
+import torch
 
 seqeval = evaluate.load("seqeval")
 
@@ -31,3 +32,14 @@ def compute_metrics(p):
         "f1": results["overall_f1"],
         "accuracy": results["overall_accuracy"],
     }
+
+
+def get_predicted_class_label(class_probabilities):
+    ...
+    pos_class_probs = class_probabilities[:15]
+    ner_class_probs = class_probabilities[15:]
+
+    pos_class_pred = torch.argmax(pos_class_probs).item()
+    ner_class_pred = torch.argmax(ner_class_probs).item() + 15
+
+    return {"pos_class": pos_class_pred, "ner_class": ner_class_pred}
