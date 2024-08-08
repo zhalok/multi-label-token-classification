@@ -1,7 +1,7 @@
 import os
-from dotenv import load_env
+from dotenv import load_dotenv
 
-load_env()
+load_dotenv()
 
 
 model_name = os.getenv("BASE_MODEL_NAME")
