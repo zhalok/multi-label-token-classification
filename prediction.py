@@ -42,9 +42,3 @@ def predict(text):
             prev_word_id = word_id
 
     return words
-
-
-text = input("Please give some text input: ")
-prediction = predict(text=text)
-
-print("prediction", prediction)

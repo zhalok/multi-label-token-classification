@@ -16,7 +16,7 @@ val_set = splited_dataset["val"]
 
 train_set = resample_dataset(train_set)
 val_set = resample_dataset(val_set)
-test_set = resample_dataset(test_set)
+
 
 train_set.to_json(os.path.join("datasets", "train.json"))
 val_set.to_json(os.path.join("datasets", "val.json"))
