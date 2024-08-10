@@ -1,5 +1,7 @@
 import evaluate
 import torch
+import numpy as np
+from config import label_list
 
 seqeval = evaluate.load("seqeval")
 
@@ -8,8 +10,12 @@ def remove_new_line_char(string):
     return string.replace("\n", "")
 
 
-import numpy as np
-from config import label_list
+def apply_padding(arr, pad_size):
+    padded_arr = arr
+    for i in range(pad_size):
+        padded_arr.append("PAD")
+
+    return padded_arr
 
 
 def compute_metrics(p):
