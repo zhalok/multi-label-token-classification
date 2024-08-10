@@ -17,7 +17,7 @@ after resampling
 "sample text": ["pos-tag-1","pos-tag2"]
 "sample text": ["ner-tag-1","ner-tag-2"]
 
-the main intuition behind following this approach is the model should automatically learn to predict the probability of one item in the first 0 to 14 tensor and one item in the second 15 to 35 tensor to be high for each token.
+the main intuition behind following this approach is the model should automatically learn to predict the probability of one item in the first 0 to 14 tensor and one item in the second 15 to 35 tensor to be high (both around 50%) for each token.
 
 how to run
 
@@ -67,3 +67,5 @@ predict a single text with inference
 ```
 python3 inference.py
 ```
+
+if you find it difficult to run the code then simply run the code cells in the notebook [Colab_Notebook](https://colab.research.google.com/drive/16zNR_6pbWTdauYF11XBKQ3vKwgKkhS88?usp=sharing)
